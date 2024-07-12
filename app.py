@@ -28,16 +28,7 @@ Requête sur api Nomatim pour obtenir les latitudes et longitudes
     return (response[0]['lat'], response[0]['lon'])
 
 
-pickup_latitude, pickup_longitude = coordinates(pickup_location)
-dropoff_latitude, dropoff_longitude = coordinates(dropoff_location)
 
-info_api = {'pickup_datetime': f'{date} {time}',
-            'pickup_longitude': pickup_longitude,
-            'pickup_latitude': pickup_latitude,
-            'dropoff_longitude': dropoff_longitude,
-            'dropoff_latitude': dropoff_latitude,
-            'passenger_count': passenger_count
-            }
 
 def pred(info_api: dict):
     url = 'https://taxifare.lewagon.ai/predict'
@@ -47,4 +38,14 @@ def pred(info_api: dict):
     return response
 
 if st.button('predict my course'):
+    pickup_latitude, pickup_longitude = coordinates(pickup_location)
+    dropoff_latitude, dropoff_longitude = coordinates(dropoff_location)
+
+    info_api = {'pickup_datetime': f'{date} {time}',
+                'pickup_longitude': pickup_longitude,
+                'pickup_latitude': pickup_latitude,
+                'dropoff_longitude': dropoff_longitude,
+                'dropoff_latitude': dropoff_latitude,
+                'passenger_count': passenger_count
+                }
     st.text_input('Fare estimated for your drive', pred(info_api)['fare'])
