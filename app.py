@@ -25,6 +25,9 @@ Requête sur api Nomatim pour obtenir les latitudes et longitudes
         'format': 'json'
     }
     response = requests.get(url, params=params).json()
+
+    st.write(response)
+
     return (response[0]['lat'], response[0]['lon'])
 
 
