@@ -4,7 +4,7 @@ import datetime
 from time import strftime
 
 '''
-# TaxiFareModel front
+# La prédiction de Thybaud
 '''
 
 
@@ -48,7 +48,3 @@ def pred(info_api: dict):
 
 if st.button('predict my course'):
     st.text_input('Fare estimated for your drive', pred(info_api)['fare'])
-
-
-
-
